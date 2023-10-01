@@ -14,6 +14,7 @@ declare module 'express' {
 }
 
 const jwtInstance = new JWTTokenManager();
+
 export default class AuthMiddleware {
   public async isAuthentcated(
     req: Request,

@@ -8,3 +8,6 @@ create register & login statics method and create UserModelInterface
 create token manager
 create auth controller
 create auth middleware
+user route setup middleware
+create user controller
+user route add controller
