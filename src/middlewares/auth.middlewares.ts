@@ -47,5 +47,13 @@ export default class AuthMiddleware {
     req: Request,
     res: Response,
     next: NextFunction
-  ): Promise<void> {}
+  ): Promise<void> {
+    const user = req.user;
+    if (user && user.role === 'admin') {
+      next();
+    } else {
+      res.status(403).json({ message: 'forbidden' });
+      return;
+    }
+  }
 }
