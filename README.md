@@ -11,3 +11,5 @@ create auth middleware
 user route setup middleware
 create user controller
 user route add controller
+beautypackage route add middware
+create beauty package controller
