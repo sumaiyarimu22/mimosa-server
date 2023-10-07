@@ -50,4 +50,30 @@ export default class BookingController {
       handleError(error, res);
     }
   }
+
+  public async deleteABooking(req: Request, res: Response): Promise<void> {
+    try {
+      const { bid } = req.params;
+
+      if (!mongoose.Types.ObjectId.isValid(bid)) {
+        res.status(404).json({ message: 'specialist not found' });
+      }
+
+      const user = await UserModel.findById(req.user?._id);
+
+      const matchBooking = user?.bookings.find(
+        (booking: bookingType) => bid === booking._id.toString()
+      );
+
+      if (!matchBooking) {
+        res.status(403).json({ message: "Booking dosen't exist" });
+      }
+      await Promise.resolve().then(async () => {
+        const booking = await BookingModel.findByIdAndDelete(bid);
+        res.status(200).json(booking);
+      });
+    } catch (error) {
+      handleError(error, res);
+    }
+  }
 }
