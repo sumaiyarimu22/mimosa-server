@@ -21,6 +21,11 @@ bookingRouter.delete(
 );
 
 //get all bookings
-bookingRouter.get('/', authInstance.isAuthentcated, authInstance.isAdmin);
+bookingRouter.get(
+  '/',
+  authInstance.isAuthentcated,
+  authInstance.isAdmin,
+  bookingInstance.getAllBooking
+);
 
 export default bookingRouter;
