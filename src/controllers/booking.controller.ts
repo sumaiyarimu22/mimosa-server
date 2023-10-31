@@ -59,6 +59,13 @@ export default class BookingController {
         res.status(404).json({ message: 'specialist not found' });
       }
 
+      const existedbooking = await BookingModel.findById(bid);
+
+      if (!existedbooking) {
+        res.status(403).json({ message: "Booking dosen't exist" });
+        return;
+      }
+
       const user = await UserModel.findById(req.user?._id);
 
       const matchBooking = user?.bookings.find(
